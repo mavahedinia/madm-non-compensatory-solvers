@@ -17,8 +17,8 @@ def get_sovler(solver_name) -> SolverBase:
         "maximax": SolverBase,
         "conjunctive": SolverBase,
         "disjunctive": SolverBase,
-        "lexicography": SolverBase,
-        "lexicography-semi-order": SolverBase,
+        "lexicographic": LexicographicSolver,
+        "lexicographic-semi-order": SolverBase,
         "permutation": SolverBase,
     }
 
