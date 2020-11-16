@@ -6,3 +6,4 @@ PV Roofs: Grid Connected System Generating Electric Energy,1842,2,1,1,0.077,48,4
 Wind Turbins Grid,2790,4,1,1,0.013,48,4,3,30,4
 CHP plants fed by bio gas,1047,4,2,3,0.028,55.8,1,1,20,4
 high efficiency wood boilers,921,4,1,3,0.003,63.6,3,5,0,3
+Dominated Option,0,0,10000000,0,-10,10000000,0,0,0,-10
