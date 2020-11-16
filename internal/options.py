@@ -1,4 +1,4 @@
-class Options:
+class DecisionSet:
     attributes = []
     options = []
 
