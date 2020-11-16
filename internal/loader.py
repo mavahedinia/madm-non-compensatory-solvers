@@ -31,5 +31,5 @@ class CSVInputLoader(InputLoader):
                 else:
                     decisions_set.options.append(row)
                     line_count += 1
-        decisions_set.attributes = list(zip(attributes[0], attributes[1]))
+        decisions_set.attrs = list(zip(attributes[0], attributes[1]))
         return decisions_set
