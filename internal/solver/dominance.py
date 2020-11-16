@@ -3,9 +3,6 @@ from internal.solver.base import SolverBase
 
 
 class DominanceSolver(SolverBase):
-    def _normalize(self):
-        pass
-
     @staticmethod
     def is_dominant(dominant_option, dominated_option, attribute_types):
         return all(
