@@ -31,9 +31,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
     decisions_set = CSVInputLoader(file_name=args.file_name).load()
 
-    # exporter = CLIExporter
-    # exporter.export(decisions_set)
-
     solver_class = get_sovler(args.method)
     solver_instance = solver_class(decisions_set=decisions_set)
     best_decisions = solver_instance.solve()
