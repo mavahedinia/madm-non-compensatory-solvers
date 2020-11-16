@@ -1,0 +1,26 @@
+[MASTER]
+enable= all
+disable= missing-docstring,too-few-public-methods,bad-continuation
+
+[FORMAT]
+max-line-length=140
+
+[BASIC]
+good-names= i,j,k,ex,Run,_,n,tp,
+
+[DESIGN]
+max-attributes=15
+
+[SIMILARITIES]
+
+# Minimum lines number of a similarity.
+min-similarity-lines=9
+
+# Ignore comments when computing similarities.
+ignore-comments=yes
+
+# Ignore docstrings when computing similarities.
+ignore-docstrings=yes
+
+# Ignore imports when computing similarities.
+ignore-imports=yes
