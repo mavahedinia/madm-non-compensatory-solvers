@@ -6,7 +6,7 @@ from internal.solver import *
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-f", "--file-name", help="Input file", required=True)
-parser.add_argument("-p", "--extra-input", help="Extra Input File")
+parser.add_argument("-p", "--extra-input", help="Extra Input File (Parameters)")
 parser.add_argument("-m", "--method", help="Solving method", required=True)
 
 
@@ -15,8 +15,8 @@ def get_sovler(solver_name) -> SolverBase:
         "dominance": DominanceSolver,
         "maximin": SolverBase,
         "maximax": SolverBase,
-        "conjunctive": SolverBase,
-        "disjunctive": SolverBase,
+        "conjunctive": ConjunctiveSolver,
+        "disjunctive": DisjunctiveSolver,
         "lexicographic": LexicographicSolver,
         "lexicographic-semi-order": SemiOrderLexicographicSolver,
         "permutation": SolverBase,
