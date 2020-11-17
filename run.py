@@ -1,13 +1,14 @@
 import argparse
 
-from internal.exporter import CLIExporter
+from internal.exporter import CLIExporter, CSVExporter
 from internal.loader import CSVExtraInputLoader, CSVInputLoader
 from internal.solver import *
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-f", "--file-name", help="Input file", required=True)
-parser.add_argument("-p", "--extra-input", help="Extra Input File (Parameters)")
 parser.add_argument("-m", "--method", help="Solving method", required=True)
+parser.add_argument("-p", "--extra-input", help="Extra Input File (Parameters)")
+parser.add_argument("-o", "--output", help="Output File Path")
 
 
 def get_sovler(solver_name) -> SolverBase:
@@ -37,5 +38,9 @@ if __name__ == "__main__":
     solver_instance = solver_class(decisions_set=decisions_set, extra_parameters=extra_input)
     best_decisions = solver_instance.solve()
 
-    exporter = CLIExporter
+    if args.output is not None:
+        exporter = CSVExporter(file_name=args.output)
+    else:
+        exporter = CLIExporter()
+
     exporter.export(best_decisions)
