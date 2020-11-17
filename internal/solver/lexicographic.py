@@ -1,15 +1,16 @@
+from abc import ABC, abstractmethod, abstractstaticmethod
+
 from internal.options import DecisionSet
 from internal.solver.base import SolverBase
 
 
-class LexicographicSolver(SolverBase):
+class LexicographicSolverBase(SolverBase, ABC):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._validate()
 
     def _validate(self):
         assert self.extra_parameters is not None
-        assert len(self.extra_parameters) == 1
         attr_names = [name for name, _ in self.decisions_set.attrs[1:]]
         attr_ordering_set = set()
         for attr in self.extra_parameters[0]:
@@ -31,19 +32,22 @@ class LexicographicSolver(SolverBase):
 
         return best_decisions
 
-    @staticmethod
-    def _filter(decisions, column, impact) -> DecisionSet:
+    def _filter(self, decisions, column, impact) -> DecisionSet:
         filtered_decisions = DecisionSet()
         filtered_decisions.attrs = decisions.attrs.copy()
         is_reversed = impact == "+"
 
         sorted_options = sorted(decisions.options, key=lambda row: row[column], reverse=is_reversed)
-        for i, option in enumerate(sorted_options):
+        for option in sorted_options:
+            if self._should_filter(option, sorted_options[0], column):
+                continue
             filtered_decisions.options.append(option)
-            if (i != len(sorted_options) - 1) and (sorted_options[i + 1][column] != option[column]):
-                break
 
         return filtered_decisions
+
+    @abstractmethod
+    def _should_filter(self, option, best_option, column):
+        pass
 
     def _get_attribute_order_indices(self, attr_ordering):
         ordering_indices = []
@@ -55,3 +59,25 @@ class LexicographicSolver(SolverBase):
                 ordering_indices.append(i + 1)
 
         return ordering_indices
+
+
+class LexicographicSolver(LexicographicSolverBase):
+    def _validate(self):
+        assert len(self.extra_parameters) == 1
+        super()._validate()
+
+    def _should_filter(self, option, best_option, column):
+        return option[column] != best_option[column]
+
+
+class SemiOrderLexicographicSolver(LexicographicSolverBase):
+    def _validate(self):
+        assert len(self.extra_parameters) == 2
+        super()._validate()
+        tolerance = float(self.extra_parameters[1][0])
+        assert tolerance >= 0
+        assert tolerance <= 100
+
+    def _should_filter(self, option, best_option, column):
+        tolerance = float(self.extra_parameters[1][0])
+        return abs(100.0 * (option[column] - best_option[column]) / best_option[column]) > tolerance

@@ -18,7 +18,7 @@ def get_sovler(solver_name) -> SolverBase:
         "conjunctive": SolverBase,
         "disjunctive": SolverBase,
         "lexicographic": LexicographicSolver,
-        "lexicographic-semi-order": SolverBase,
+        "lexicographic-semi-order": SemiOrderLexicographicSolver,
         "permutation": SolverBase,
     }
 
