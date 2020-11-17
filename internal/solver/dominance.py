@@ -7,7 +7,7 @@ class DominanceSolver(SolverBase):
     def is_dominant(dominant_option, dominated_option, attribute_types):
         return all(
             [
-                dominant_attribute > dominated_attribute if attribute_type is "+" else dominant_attribute < dominated_attribute
+                dominant_attribute >= dominated_attribute if attribute_type is "+" else dominant_attribute <= dominated_attribute
                 for dominant_attribute, dominated_attribute, attribute_type in zip(
                     dominant_option[1:], dominated_option[1:], attribute_types[1:]
                 )
