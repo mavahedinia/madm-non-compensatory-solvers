@@ -18,7 +18,7 @@ class DominanceSolver(SolverBase):
         for dominant_option in self.decisions_set.options:
             if dominant_option[0] == option[0]:
                 continue
-            if self.is_dominant(dominant_option, option, [impact for _, impact in self.decisions_set.attrs]):
+            if self.is_dominant(dominant_option, option, self.decisions_set.get_attributes_impact()):
                 return True
 
         return False

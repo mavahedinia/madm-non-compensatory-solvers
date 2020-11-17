@@ -24,11 +24,12 @@ class LexicographicSolverBase(SolverBase, ABC):
         best_decisions.options = self.decisions_set.options.copy()
 
         attr_orders = self._get_attribute_order_indices(self.extra_parameters[0])
+        impacts = self.decisions_set.get_attributes_impact()
 
         for current_column in attr_orders:
             if len(best_decisions.options) == 1:
                 break
-            best_decisions = self._filter(best_decisions, current_column, best_decisions.attrs[current_column][1])
+            best_decisions = self._filter(best_decisions, current_column, impacts[current_column])
 
         return best_decisions
 

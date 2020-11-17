@@ -3,6 +3,9 @@ class DecisionSet:
         self.attrs = []
         self.options = []
 
+    def get_attributes_impact(self):
+        return [impact for _, impact in self.attrs]
+
     def validate(self):
         rows_len = len(self.attrs)
         for i, option in enumerate(self.options):
