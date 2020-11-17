@@ -5,9 +5,9 @@ from internal.loader import CSVExtraInputLoader, CSVInputLoader
 from internal.solver import *
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-f", "--file-name", help="Input file")
+parser.add_argument("-f", "--file-name", help="Input file", required=True)
 parser.add_argument("-p", "--extra-input", help="Extra Input File")
-parser.add_argument("-m", "--method", help="Solving method")
+parser.add_argument("-m", "--method", help="Solving method", required=True)
 
 
 def get_sovler(solver_name) -> SolverBase:

@@ -1,4 +1,4 @@
-from abc import ABC, abstractmethod, abstractstaticmethod
+from abc import ABC, abstractmethod
 
 from internal.options import DecisionSet
 from internal.solver.base import SolverBase
