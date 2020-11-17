@@ -19,7 +19,7 @@ def get_sovler(solver_name) -> SolverBase:
         "disjunctive": DisjunctiveSolver,
         "lexicographic": LexicographicSolver,
         "lexicographic-semi-order": SemiOrderLexicographicSolver,
-        "permutation": SolverBase,
+        "permutation": PermutationSolver,
     }
 
     if solver_name not in solvers:
