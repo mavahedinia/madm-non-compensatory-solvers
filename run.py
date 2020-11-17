@@ -13,8 +13,8 @@ parser.add_argument("-m", "--method", help="Solving method", required=True)
 def get_sovler(solver_name) -> SolverBase:
     solvers = {
         "dominance": DominanceSolver,
-        "maximin": SolverBase,
-        "maximax": SolverBase,
+        "maximin": MaxiMinSolver,
+        "maximax": MaxiMaxSolver,
         "conjunctive": ConjunctiveSolver,
         "disjunctive": DisjunctiveSolver,
         "lexicographic": LexicographicSolver,
